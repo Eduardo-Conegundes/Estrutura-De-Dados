@@ -1,30 +1,42 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 #include "Ponto.h" // Inclui os protótipos
 
-int main(void){
-    float distancia, x, y;
-    float *x1 = &x, *y1 = &y;
-    Ponto *p, *q;
+// Aloca e retorna um ponto com coordenadas "x" e "y"
+Ponto* pto_cria(float x, float y){
+    Ponto* p = (Ponto*) malloc(sizeof(Ponto));
 
-    p = pto_cria(10, 21);
-    q = pto_cria(7, 25);
+    if(p != NULL){
+        p->x = x;
+        p->y = y;
+    }
+
+    return p;
+}
+
+// Libera a memória alocada para um ponto
+void pto_libera(Ponto* p){
+    free(p);
+}
+
+// Recupera, por referência, o valor de um ponto
+void pto_acessa(Ponto* p, float* x, float* y){
+    *x = p->x;
+    *y = p->y;
+}
+
+// Atribui a um ponto as coordenadas "x" e "y"
+void pto_atribui(Ponto* p, float x, float y){
+    p->x = x;
+    p->y = y;
+}
+
+// Calcula a distância entre dois pontos
+float pto_distancia(Ponto* p1, Ponto* p2){
+    float dx = p1->x - p2->x;
+    float dy = p1->y - p2->y;
     
-    distancia = pto_distancia(p, q);
-    pto_acessa(p, x1, y1);
-
-    printf("\n\n Distancia entre os pontos p e q: %.2f", distancia);
-    printf("\n\n Recuperando ponto p, x = %.2f, y = %.2f", x, y);
-
-    pto_atribui(q, x, y);
-
-    printf("\n\n Recuperando ponto q (depois da atribuicao do ponto p no ponto q), x = %.2f, y = %.2f \n\n\n", q->x, q->y);
-
-    pto_libera(q);
-    pto_libera(p);
-    
-    return 0;
+    return sqrt(dx * dx + dy * dy);
 }
 
 
