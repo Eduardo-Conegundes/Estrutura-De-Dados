@@ -47,6 +47,18 @@ int main(void){
                 }
             break;
             case 5:
+                int cpf;
+                
+                printf("\n Digite seu cpf: ");
+                scanf("%d", &cpf);
+
+                if(remove_lista(li, cpf)){
+                    printf("\n Removido com sucessor\n\n");
+                }else{
+                    printf("\n Errro ao remover da lista\n\n");
+                }
+            break;
+            case 6:
                 system("cls");
                 printf("\n Finalizado!\n\n");
             break;
@@ -54,7 +66,7 @@ int main(void){
                 printf("\n Opcao invalida!\n\n");
             break;
         }
-    }while(opcoes != 5);
+    }while(opcoes != 6);
     
     libera_lista(li);
 

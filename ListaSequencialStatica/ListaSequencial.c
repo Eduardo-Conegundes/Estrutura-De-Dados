@@ -144,10 +144,69 @@ int MenuDeOpcoes(void){
 
     printf(" Escolha uma opcao: \n\n");
     printf(" 1- Cadastrar alunos\n 2- Verificar tamanho da lista\n 3- Verificar se a lista esta cheia\n");
-    printf(" 4- Verificar se a lista esta vazia\n 5- Sair\n\n");
+    printf(" 4- Verificar se a lista esta vazia\n 5- Remover\n 6- Sair\n\n");
 
     printf(" Opcao: ");
     scanf("%d", &op);
 
     return op;
+}
+
+int remove_lista_final(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if(li->qtd == 0){
+        return 0;
+    }else{
+        li->qtd--;
+        return 1;
+    }
+}
+
+int remove_lista_inicio(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if(li->qtd == 0){
+        return 0;
+    }else{
+        int i;
+
+        for(i = 0; i < li->qtd - 1; i++){
+            li->dados[i] = li->dados[i+2];
+        }
+
+        li->qtd--;
+
+        return 1;
+    }
+}
+
+int remove_lista(Lista* li, int matricula){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if(li->qtd == 0){
+        return 0;
+    }else{
+        int i = 0, k;
+
+        while(i < li->qtd && li->dados[i].matricula != matricula) i++;
+
+        if(i == li->qtd){   // Não encontrado
+            return 0;
+        }else{
+
+            for(k = i; k < li->qtd - 1; k++){
+                li->dados[k] = li->dados[k+1];
+            }
+            li->qtd--;
+            return 1;
+        }
+    }
+
 }

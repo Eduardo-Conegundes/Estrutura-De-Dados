@@ -43,4 +43,13 @@ struct aluno cadastro_de_alunos(struct aluno al);
 // Menu de opcoes para escolha das funções disponiveis
 int MenuDeOpcoes(void);
 
+// Remove um aluno do final da lista
+int remove_lista_final(Lista* li);
+
+// Remove um aluno do inicio da lista
+int remove_lista_inicio(Lista* li);
+
+// Remove um aluno de qualquer lugar da lista
+int remove_lista(Lista* li, int matricula);
+
 #endif
