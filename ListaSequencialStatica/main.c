@@ -3,6 +3,8 @@
 int main(void){
     char resposta = 's';
     int i, opcoes;
+    int matricula;
+    struct aluno dados_aluno;
     Lista *li;
 
     li = cria_lista();
@@ -46,27 +48,42 @@ int main(void){
                     printf("\n A lista nao esta vazia!\n");
                 }
             break;
-            case 5:
-                int cpf;
-                
-                printf("\n Digite seu cpf: ");
-                scanf("%d", &cpf);
 
-                if(remove_lista(li, cpf)){
+            case 5:
+                printf("\n Digite sua matricula: ");
+                scanf("%d", &matricula);
+            
+                if(remove_lista(li, matricula)){
                     printf("\n Removido com sucessor\n\n");
                 }else{
                     printf("\n Errro ao remover da lista\n\n");
                 }
             break;
+
             case 6:
+                printf("\n Digite seu matricula: ");
+                scanf("%d", &matricula);
+
+                if(consulta_lista_mat(li, matricula, &dados_aluno)){
+                    printf("\n\n Matricula: %d", dados_aluno.matricula);
+                    printf("\n Nome: %s", dados_aluno.nome);
+                    printf("\n Nota1: %.2f Nota2: %.2f Nota3: %.2f\n",
+                    dados_aluno.nota1, dados_aluno.nota2,dados_aluno.nota3);
+                }else{
+                    printf("\n Matricula nao encontrada!\n\n");
+                }
+            break;
+
+            case 7:
                 system("cls");
                 printf("\n Finalizado!\n\n");
             break;
+
             default:
                 printf("\n Opcao invalida!\n\n");
             break;
         }
-    }while(opcoes != 6);
+    }while(opcoes != 7);
     
     libera_lista(li);
 

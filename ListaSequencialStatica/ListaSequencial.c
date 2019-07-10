@@ -144,7 +144,7 @@ int MenuDeOpcoes(void){
 
     printf(" Escolha uma opcao: \n\n");
     printf(" 1- Cadastrar alunos\n 2- Verificar tamanho da lista\n 3- Verificar se a lista esta cheia\n");
-    printf(" 4- Verificar se a lista esta vazia\n 5- Remover\n 6- Sair\n\n");
+    printf(" 4- Verificar se a lista esta vazia\n 5- Remover\n 6- Consultar\n 7- Sair\n\n");
 
     printf(" Opcao: ");
     scanf("%d", &op);
@@ -209,4 +209,30 @@ int remove_lista(Lista* li, int matricula){
         }
     }
 
+}
+
+int consulta_lista_pos(Lista* li, int pos, struct aluno* dados_aluno){
+    if(li == NULL || pos <= 0 || pos > li->qtd){
+        return 0;
+    }else{
+        *dados_aluno = li->dados[pos-1];
+        return 1;
+    }
+}
+
+int consulta_lista_mat(Lista* li, int matricula, struct aluno* dados_aluno){
+    if(li == NULL || matricula < 0){
+        return 0;
+    }else{
+        int i = 0;
+
+        while(i < li->qtd && li->dados[i].matricula != matricula) i++;
+
+        if(i == li->qtd){
+            return 0;
+        }else{
+            *dados_aluno = li->dados[i];
+            return 1;
+        }
+    }
 }

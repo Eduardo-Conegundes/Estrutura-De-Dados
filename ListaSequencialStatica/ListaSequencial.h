@@ -6,7 +6,7 @@
 // Estrutura para dados dos alunos
 struct aluno {
     int matricula;
-    char nome[30];
+    char nome[30]; 
     float nota1, nota2, nota3;
 };
 
@@ -51,5 +51,11 @@ int remove_lista_inicio(Lista* li);
 
 // Remove um aluno de qualquer lugar da lista
 int remove_lista(Lista* li, int matricula);
+
+// Pega dados de um aluno (dado a posição)
+int consulta_lista_pos(Lista* li, int pos, struct aluno* dados_aluno);
+
+// Pega dados de um aluno (dado a matricula)
+int consulta_lista_mat(Lista* li, int matricula, struct aluno* dados_aluno);
 
 #endif
