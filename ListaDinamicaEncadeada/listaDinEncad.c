@@ -3,7 +3,7 @@
 #include "listaDinEncad.h"
 
 typedef struct elemento{
-    struct aluno dados;
+    T_aluno dados;
     struct elemento* prox;
 }T_elem;
 
@@ -115,7 +115,9 @@ void cadastar_alunos(Lista* li){
         printf("\n Segunda nota do aluno: ");
         scanf("%f", &aluno.nota3);
         
-        insere_lista_inicio(li, aluno);
+        //insere_lista_inicio(li, aluno);
+        //insere_lista_final(li, aluno);
+        insere_lista_ordenada(li, aluno);
 
         system("cls");
         printf("\n\n Deseja cadastar outro aluno? [s/n]: ");
@@ -133,9 +135,7 @@ void mostrar_todos_alunos(Lista* li){
     }else if( (*li) == NULL){
         printf("\n Lista vazia!\n\n");
     }else{
-        T_elem* no = (T_elem*) malloc(sizeof(T_elem));
-
-        no = (*li);
+        T_elem* no = (*li);
 
         while(no != NULL){
             printf("\n Matricula: %i\n", no->dados.matricula);
@@ -146,6 +146,66 @@ void mostrar_todos_alunos(Lista* li){
             printf("\n -------------------------------------\n");
 
             no = no->prox;
+        }
+    }
+}
+
+int insere_lista_final(Lista* li, T_aluno aluno){
+
+    if(li == NULL){
+        return -1;
+    }else{
+        T_elem* no = (T_elem*) malloc(sizeof(T_elem));
+
+        no->dados = aluno;
+        no->prox = NULL;
+
+        if((*li) == NULL){
+            *li = no;
+        }else{
+            T_elem* aux = *li;
+            
+            while(aux->prox != NULL){
+                aux = aux->prox;
+            }
+
+            aux->prox = no;
+        }
+
+        return 1;
+    }
+}
+
+int insere_lista_ordenada(Lista* li, T_aluno aluno){
+    
+    if(li == NULL){
+        return -1;
+    }else{
+        T_elem* no = (T_elem*) malloc(sizeof(T_elem));
+
+        no->dados = aluno;
+        no->prox = NULL;
+
+        if((*li) == NULL){
+            *li = no;
+            return 1;
+        }else{
+            T_elem *anterior, *atual = (*li);
+
+            while(atual != NULL && atual->dados.matricula < no->dados.matricula){
+                anterior = atual;
+                atual = atual->prox;
+            }
+            
+            if(atual == (*li)){
+                no->prox = (*li);
+                *li = no;
+            }else{
+                no->prox = anterior->prox;
+                anterior->prox = no;
+            }
+    
+            return 1;
         }
     }
 }

@@ -22,11 +22,11 @@ int main (void){
             break;
                 
             case 3: 
-                // CODE
+                // Deletar
             break;
                 
             case 4:
-                // CODE
+                // Consultar
             break;
                 
             case 5:
@@ -43,9 +43,9 @@ int main (void){
                 if(x == -1){
                     printf("\n Lista inexistente!\n\n");                    
                 }else if(x == 1){
-                    printf("\n Lista vazia!\n\n");
+                    printf("\n Sim, Lista vazia!\n\n");
                 }else{
-                    printf("\n A lista nao esta vazia\n\n");
+                    printf("\n Nao, a lista nao esta vazia\n\n");
                 }
 
             break;
