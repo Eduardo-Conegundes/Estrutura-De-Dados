@@ -3,7 +3,7 @@
 
 int main (void){
     system("cls");
-    
+
     int opcao, x;
     Lista* li;
 
@@ -14,11 +14,11 @@ int main (void){
 
         switch(opcao){
             case 1:
-                // CODE
+                cadastar_alunos(li);
             break;
 
             case 2:
-                // CODE
+                mostrar_todos_alunos(li);
             break;
                 
             case 3: 

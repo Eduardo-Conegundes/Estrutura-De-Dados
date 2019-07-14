@@ -11,6 +11,10 @@ typedef struct elemento* Lista;
 
 int MenuDeOpcoes();
 
+void cadastar_alunos(Lista* li);
+
+void mostrar_todos_alunos(Lista* li);
+
 Lista* cria_lista();
 
 void libera_lista(Lista* li);
@@ -18,5 +22,7 @@ void libera_lista(Lista* li);
 int tamanho_lista(Lista* li);
 
 int lista_vazia(Lista* li);
+
+int insere_lista_inicio(Lista* li, T_aluno aluno);
 
 #endif
