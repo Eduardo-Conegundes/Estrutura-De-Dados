@@ -6,13 +6,13 @@ typedef struct elemento{
     struct elemento* prox;
 }T_elem;
 
-int MenuDeOpcoes(void){
+int MenuDeOpcoes(){
     int op;
 
     printf("\n\n *-*-*-*-* MENU PRINCIPAL -*-*-*-*-* \n\n");
 
     printf(" Escolha uma opcao: \n\n");
-    printf(" 7- Sair\n");
+    printf(" 5- Tamanho da lista\n 6- A lista esta vazia?\n 7- Sair\n\n");
 
     printf(" Opcao: ");
     scanf("%d", &op);
@@ -42,5 +42,35 @@ void libera_lista(Lista* li){
         }
 
         free(li);
+    }
+}
+
+int tamanho_lista(Lista* li){
+    system("cls");
+    
+    if(li == NULL){
+        return -1;
+    }else{
+        int cont = 0;
+        T_elem* no = *li;   
+
+        while(no != NULL){
+            cont++;
+            no = no->prox;
+        }
+
+        return cont;
+    }
+}
+
+int lista_vazia(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if( (*li) == NULL ){
+        return 1;
+    }else{
+        return 0;
     }
 }

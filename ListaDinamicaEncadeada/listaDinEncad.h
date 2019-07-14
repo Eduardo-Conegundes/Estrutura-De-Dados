@@ -9,10 +9,14 @@ typedef struct aluno{
 
 typedef struct elemento* Lista;
 
-int MenuDeOpcoes(void);
+int MenuDeOpcoes();
 
 Lista* cria_lista();
 
 void libera_lista(Lista* li);
+
+int tamanho_lista(Lista* li);
+
+int lista_vazia(Lista* li);
 
 #endif

@@ -1,7 +1,10 @@
+#include <stdio.h>
 #include "listaDinEncad.c"
 
 int main (void){
-    int opcao;
+    system("cls");
+    
+    int opcao, x;
     Lista* li;
 
     li = cria_lista();
@@ -27,11 +30,24 @@ int main (void){
             break;
                 
             case 5:
-                // CODE
+                if(tamanho_lista(li) == -1){
+                    printf("\n Lista inexistente!\n\n");
+                }else{
+                    printf("\n Tamanho da lista: %d\n\n", tamanho_lista(li));
+                }
             break;
 
             case 6:
-                // CODE
+                x = lista_vazia(li);
+
+                if(x == -1){
+                    printf("\n Lista inexistente!\n\n");                    
+                }else if(x == 1){
+                    printf("\n Lista vazia!\n\n");
+                }else{
+                    printf("\n A lista nao esta vazia\n\n");
+                }
+
             break;
             case 7:
                 printf("\n Saindo...\n\n");
