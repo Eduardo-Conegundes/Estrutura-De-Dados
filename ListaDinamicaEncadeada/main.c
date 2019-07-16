@@ -4,7 +4,7 @@
 int main (void){
     system("cls");
 
-    int opcao, x;
+    int opcao, x, matricula;
     Lista* li;
 
     li = cria_lista();
@@ -21,8 +21,19 @@ int main (void){
                 mostrar_todos_alunos(li);
             break;
                 
-            case 3: 
-                // Deletar
+            case 3:
+                printf("\n Informe a matricula do aluno: ");
+                scanf("%d", &matricula);
+
+                x = remove_lista(li, matricula);
+
+                if(x == -1){
+                    printf("\n\n Lista inexistente!\n\n");
+                }else if(x == 1){
+                    printf("\n\n Aluno removido com sucesso!\n\n");
+                }else{
+                    printf("\n Aluno nao encontrado!\n\n");
+                }
             break;
                 
             case 4:

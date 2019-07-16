@@ -29,4 +29,10 @@ int insere_lista_final(Lista* li, T_aluno aluno);
 
 int insere_lista_ordenada(Lista* li, T_aluno aluno);
 
+int remove_lista_inicio(Lista* li);
+
+int remove_lista_final(Lista* li);
+
+int remove_lista(Lista* li, int matricula_aluno);
+
 #endif

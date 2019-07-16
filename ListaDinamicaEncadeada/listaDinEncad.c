@@ -13,8 +13,8 @@ int MenuDeOpcoes(){
     printf("\n\n *-*-*-*-* MENU PRINCIPAL -*-*-*-*-* \n\n");
 
     printf(" Escolha uma opcao: \n\n");
-    printf(" 1- Cadastrar alunos\n 2- Mostra alunos cadastrados\n");
-    printf(" 5- Tamanho da lista\n 6- A lista esta vazia?\n 7- Sair\n\n");
+    printf(" 1- Cadastrar alunos\n 2- Mostra alunos cadastrados\n 3- Remover aluno");
+    printf("\n 5- Tamanho da lista\n 6- A lista esta vazia?\n 7- Sair\n\n");
 
     printf(" Opcao: ");
     scanf("%d", &op);
@@ -207,5 +207,74 @@ int insere_lista_ordenada(Lista* li, T_aluno aluno){
     
             return 1;
         }
+    }
+}
+
+int remove_lista_inicio(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if(*li == NULL){
+        return 0;
+    }else{
+        T_elem* no = *li;
+        *li = (*li)->prox;
+        free(no);
+        return 1;
+    }
+}
+
+int remove_lista_final(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if((*li) == NULL){
+        return 0;
+    }else{
+        T_elem *no_anterior, *no = *li;
+
+        while(no->prox != NULL){
+            no_anterior = no;
+            no = no->prox;
+        }
+
+        if(no == (*li)){
+            *li = NULL; 
+        }else{
+            no_anterior->prox = NULL;
+            free(no);
+        }
+
+        return  1;
+    }
+}
+
+int remove_lista(Lista* li, int matricula_aluno){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if((*li) == NULL){
+        return 0;        
+    }else{
+        T_elem *no_anterior, *no = *li;
+
+        while(no != NULL && no->dados.matricula != matricula_aluno){
+            no_anterior = no;
+            no = no->prox;
+        }
+
+        if(no == (*li)){
+            *li = no->prox;
+        }else if(no == NULL){
+            return 0;
+        }else{
+            no_anterior->prox = no->prox;
+            free(no);   
+        }
+        
+        return 1;
     }
 }
