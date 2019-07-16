@@ -7,19 +7,16 @@ typedef struct elemento{
     struct elemento* prox;
 }T_elem;
 
-int MenuDeOpcoes(){
-    int op;
-
+void MenuDeOpcoes(int* opcao){
+    
     printf("\n\n *-*-*-*-* MENU PRINCIPAL -*-*-*-*-* \n\n");
 
     printf(" Escolha uma opcao: \n\n");
     printf(" 1- Cadastrar alunos\n 2- Mostra alunos cadastrados\n 3- Remover aluno");
-    printf("\n 5- Tamanho da lista\n 6- A lista esta vazia?\n 7- Sair\n\n");
+    printf("\n 4- Buscar por aluno\n 5- Tamanho da lista\n 6- A lista esta vazia?\n 7- Sair\n\n");
 
     printf(" Opcao: ");
-    scanf("%d", &op);
-
-    return op;
+    scanf("%d", opcao);
 }
 
 Lista* cria_lista(){
@@ -251,7 +248,7 @@ int remove_lista_final(Lista* li){
     }
 }
 
-int remove_lista(Lista* li, int matricula_aluno){
+int remove_lista(Lista* li, int matricula){
     system("cls");
 
     if(li == NULL){
@@ -261,7 +258,7 @@ int remove_lista(Lista* li, int matricula_aluno){
     }else{
         T_elem *no_anterior, *no = *li;
 
-        while(no != NULL && no->dados.matricula != matricula_aluno){
+        while(no != NULL && no->dados.matricula != matricula){
             no_anterior = no;
             no = no->prox;
         }
@@ -275,6 +272,65 @@ int remove_lista(Lista* li, int matricula_aluno){
             free(no);   
         }
         
+        return 1;
+    }
+}
+
+int busca_lista_posicao(Lista* li, int posicao){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if((*li) == NULL){
+        return 0;
+    }else{
+        T_elem* no = *li;
+        int pos = 1;
+
+        while(no != NULL && pos != posicao){
+            no = no->prox;
+            pos++;
+        }
+
+        if(no == NULL){
+            return 0;
+        }else{
+            printf("\n Matricula: %i\n", no->dados.matricula);
+            printf(" Nome: %s\n", no->dados.nome);
+            printf(" Primeira nota: %.1f\n", no->dados.nota1);
+            printf(" Segunda nota: %.1f\n", no->dados.nota2);
+            printf(" Terceira nota: %.1f\n", no->dados.nota3);
+        }
+
+        return 1;
+    }
+}
+
+
+int busca_lista_matricula(Lista* li, int matricula){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if((*li) == NULL){
+        return 0;
+    }else{
+        T_elem* no = *li;
+
+        while(no != NULL && no->dados.matricula != matricula){
+            no = no->prox;
+        }
+
+        if(no == NULL){
+            return 0;
+        }else{
+            printf("\n Matricula: %i\n", no->dados.matricula);
+            printf(" Nome: %s\n", no->dados.nome);
+            printf(" Primeira nota: %.1f\n", no->dados.nota1);
+            printf(" Segunda nota: %.1f\n", no->dados.nota2);
+            printf(" Terceira nota: %.1f\n", no->dados.nota3);
+        }
+
         return 1;
     }
 }

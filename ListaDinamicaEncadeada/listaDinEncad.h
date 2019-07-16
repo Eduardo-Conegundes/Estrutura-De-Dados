@@ -9,7 +9,7 @@ typedef struct aluno{
 
 typedef struct elemento* Lista;
 
-int MenuDeOpcoes();
+void MenuDeOpcoes(int* opcao);
 
 void cadastar_alunos(Lista* li);
 
@@ -33,6 +33,10 @@ int remove_lista_inicio(Lista* li);
 
 int remove_lista_final(Lista* li);
 
-int remove_lista(Lista* li, int matricula_aluno);
+int remove_lista(Lista* li, int matricula);
+
+int busca_lista_posicao(Lista* li, int posicao);
+
+int busca_lista_matricula(Lista* li, int matricula);
 
 #endif

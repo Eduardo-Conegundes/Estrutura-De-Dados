@@ -4,13 +4,13 @@
 int main (void){
     system("cls");
 
-    int opcao, x, matricula;
+    int opcao = 0, x, matricula;
     Lista* li;
 
     li = cria_lista();
 
     do{
-        opcao = MenuDeOpcoes();
+        MenuDeOpcoes(&opcao);
 
         switch(opcao){
             case 1:
@@ -22,6 +22,7 @@ int main (void){
             break;
                 
             case 3:
+                system("cls");
                 printf("\n Informe a matricula do aluno: ");
                 scanf("%d", &matricula);
 
@@ -37,7 +38,18 @@ int main (void){
             break;
                 
             case 4:
-                // Consultar
+                system("cls");
+                printf("\n Informe a matricula do aluno: ");
+                scanf("%d", &matricula);
+
+                x = busca_lista_matricula(li, matricula);;
+
+                if(x == -1){
+                    printf("\n\n Lista inexistente!\n\n");
+                }else if(x == 0){
+                    printf("\n Aluno nao encontrado!\n\n");
+                }
+                
             break;
                 
             case 5:
@@ -65,6 +77,7 @@ int main (void){
             break;
 
             default:
+                system("cls");
                 printf("\n Opcao invalida!\n\n");
             break;
         }
