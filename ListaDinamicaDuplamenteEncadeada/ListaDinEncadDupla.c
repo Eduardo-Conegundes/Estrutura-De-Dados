@@ -4,7 +4,7 @@
 
 typedef struct elemento {
     T_elem *anterior;
-    T_aluno *dados;
+    T_aluno dados;
     T_elem *proximo;
 }T_elem;
 
@@ -43,4 +43,185 @@ void MenuDeOpcoes(int* opcao){
 
     printf(" Opcao: ");
     scanf("%d", opcao);
+}
+
+int tamanho_lista(Lista* li){
+    system("cls");
+    
+    if(li == NULL){
+        return -1;
+    }else{
+        int cont = 0;
+        T_elem* no = *li;   
+
+        while(no != NULL){
+            cont++;
+            no = no->proximo;
+        }
+
+        return cont;
+    }
+}
+
+int lista_vazia(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else if( (*li) == NULL ){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+int insere_lista_inicio(Lista* li, T_aluno aluno){
+    system("cls");
+
+    if(li == NULL){
+        return -1;
+    }else{
+        T_elem* no = (T_elem*) malloc(sizeof(T_elem));
+
+        no->anterior = NULL;
+        no->dados = aluno;
+        no->proximo = (*li);
+        
+        // Verifica se a lista está vazia
+
+        if((*li) != NULL){ // Se não estiver vazia...
+            (*li)->anterior = no;
+        }
+
+        *li = no;
+
+        return 1;
+    }
+
+}
+
+int insere_lista_final(Lista* li, T_aluno aluno){
+
+    if(li == NULL){
+        return -1;
+    }else{
+        T_elem* no = (T_elem*) malloc(sizeof(T_elem));
+
+        no->dados = aluno;
+        no->proximo= NULL;
+
+        if((*li) == NULL){
+            no->anterior = NULL;
+            *li = no;
+        }else{
+            T_elem* aux = *li;
+            
+            while(aux->proximo != NULL){
+                aux = aux->proximo;
+            }
+
+            aux->proximo = no;
+            no->anterior = aux;
+        }
+
+        return 1;
+    }
+}
+
+void cadastar_alunos(Lista* li){
+    system("cls");
+    T_aluno aluno;
+    char opcao;
+
+    do{
+        printf("\n Matricula do aluno: ");
+        scanf("%i", &aluno.matricula);
+
+        printf("\n Nome do aluno: ");
+        scanf("%s", aluno.nome);
+
+        printf("\n Primeira nota do aluno: ");
+        scanf("%f", &aluno.nota1);
+
+        printf("\n Segunda nota do aluno: ");
+        scanf("%f", &aluno.nota2);
+
+        printf("\n Segunda nota do aluno: ");
+        scanf("%f", &aluno.nota3);
+        
+        //insere_lista_inicio(li, aluno);
+        //insere_lista_final(li, aluno);
+        insere_lista_ordenada(li, aluno);
+
+        system("cls");
+        printf("\n\n Deseja cadastar outro aluno? [s/n]: ");
+        scanf(" %c", &opcao);
+
+    }while(opcao != 'n');
+
+}
+
+int insere_lista_ordenada(Lista* li, T_aluno aluno){
+    
+    if(li == NULL){
+        return -1;
+    }else{
+        T_elem* no = (T_elem*) malloc(sizeof(T_elem));
+
+        no->dados = aluno;
+        no->proximo = NULL;
+
+        if((*li) == NULL){
+            no->anterior = NULL;
+            *li = no;
+            return 1;
+        }else{
+            T_elem *anterior, *atual = (*li);
+
+            while(atual != NULL && atual->dados.matricula < no->dados.matricula){
+                anterior = atual;
+                atual = atual->proximo;
+            }
+            
+            if(atual == (*li)){
+                no->anterior = NULL;
+                no->proximo = (*li);
+                (*li)->anterior = no;
+                *li = no;
+            }else{
+                // Obs: "anterior->proximo" é igual a "atual"
+                no->proximo = anterior->proximo; 
+                no->anterior = anterior;
+                anterior->proximo = no;
+                if(atual != NULL){
+                    atual->anterior = no;
+                }
+            }
+    
+            return 1;
+        }
+    }
+}
+
+void mostrar_todos_alunos(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        printf("\n Lista nao existe!!\n\n");
+    }else if( (*li) == NULL){
+        printf("\n Lista vazia!\n\n");
+    }else{
+        T_elem* no = (*li);
+
+        while(no != NULL){
+            printf("\n Matricula: %i\n", no->dados.matricula);
+            printf(" Nome: %s\n", no->dados.nome);
+            printf(" Primeira nota: %.1f\n", no->dados.nota1);
+            printf(" Segunda nota: %.1f\n", no->dados.nota2);
+            printf(" Terceira nota: %.1f\n", no->dados.nota3);
+            printf("\n -------------------------------------\n");
+
+            no = no->proximo;
+        }
+    }
 }
