@@ -246,3 +246,27 @@ int remove_lista_inicio(Lista* li){
 
     return 1;
 }
+
+int remove_lista_final(Lista* li){
+    if(li == NULL){
+        return -1;
+    }
+
+    if(*li == NULL){
+        return 0;
+    }
+
+    T_elem *no = *li;
+
+    while(no->proximo != NULL){
+        no = no->proximo;
+    }
+
+    if(no->anterior == NULL){
+        *li = no->proximo; // no->proximo ou NULL (são a msm coisa)
+    }else{
+        no->anterior->proximo = NULL;
+    }
+    
+    free(no);
+}
