@@ -225,3 +225,24 @@ void mostrar_todos_alunos(Lista* li){
         }
     }
 }
+
+int remove_lista_inicio(Lista* li){
+    if(li == NULL){
+        return -1;
+    }
+
+    if(*li == NULL){
+        return 0;
+    }
+
+    T_elem *no = *li;
+    *li = no->proximo;
+
+    if(no->proximo != NULL){
+        no->proximo->anterior = NULL;
+    }
+
+    free(no);
+
+    return 1;
+}
