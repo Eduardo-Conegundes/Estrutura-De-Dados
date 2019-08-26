@@ -269,4 +269,36 @@ int remove_lista_final(Lista* li){
     }
     
     free(no);
+    
+    return 1;
+}
+
+int remove_lista(Lista* li, int matricula){
+    if(li == NULL){
+        return -1;
+    }
+    
+    T_elem *no = *li;
+
+    while(no != NULL && no->dados.matricula != matricula){
+        no = no->proximo;
+    }
+
+    if(no == NULL){  // Não achou
+        return 0;
+    }
+
+    if(no->anterior == NULL){
+        *li = no->proximo;
+    }else{
+        no->anterior->proximo = no->proximo;
+    }
+
+    if(no->proximo != NULL){
+        no->proximo->anterior = no->anterior;
+    }
+
+    free(no);
+
+    return 1;
 }
