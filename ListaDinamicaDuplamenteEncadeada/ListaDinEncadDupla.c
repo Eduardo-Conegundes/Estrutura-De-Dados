@@ -336,6 +336,17 @@ int busca_lista_matricula(Lista* li, int matricula){
     T_elem *no = *li;
 
     while(no != NULL && matricula != no->dados.matricula){
+        no = no->proximo;
+    }
 
+    if(no == NULL){
+        return 0;
+    }else{
+        printf("\n Matricula: %i\n", no->dados.matricula);
+        printf(" Nome: %s\n", no->dados.nome);
+        printf(" Primeira nota: %.1f\n", no->dados.nota1);
+        printf(" Segunda nota: %.1f\n", no->dados.nota2);
+        printf(" Terceira nota: %.1f\n", no->dados.nota3);
+        return 1;
     }
 }
