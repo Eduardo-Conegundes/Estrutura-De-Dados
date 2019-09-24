@@ -307,7 +307,7 @@ int busca_lista_posicao(Lista* li, int posicao){
     int i = 1;
 
     if(li == NULL || posicao <= 0){
-        return 0;
+        return -1;
     }
 
     T_elem *no = *li;
@@ -325,5 +325,17 @@ int busca_lista_posicao(Lista* li, int posicao){
         printf(" Primeira nota: %.1f\n", no->dados.nota1);
         printf(" Segunda nota: %.1f\n", no->dados.nota2);
         printf(" Terceira nota: %.1f\n", no->dados.nota3);
+        return 1;
+    }
+}
+
+int busca_lista_matricula(Lista* li, int matricula){
+    if(li == NULL){
+        return -1;
+    } 
+    T_elem *no = *li;
+
+    while(no != NULL && matricula != no->dados.matricula){
+
     }
 }
