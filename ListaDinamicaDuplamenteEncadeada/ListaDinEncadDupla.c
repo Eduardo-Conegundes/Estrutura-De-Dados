@@ -302,3 +302,28 @@ int remove_lista(Lista* li, int matricula){
 
     return 1;
 }
+
+int busca_lista_posicao(Lista* li, int posicao){
+    int i = 1;
+
+    if(li == NULL || posicao <= 0){
+        return 0;
+    }
+
+    T_elem *no = *li;
+
+    while(no != NULL || i < posicao){
+        no = no->proximo;
+        i++;
+    }
+
+    if(no == NULL){
+        return 0;
+    }else{    // i == posicao
+        printf("\n Matricula: %i\n", no->dados.matricula);
+        printf(" Nome: %s\n", no->dados.nome);
+        printf(" Primeira nota: %.1f\n", no->dados.nota1);
+        printf(" Segunda nota: %.1f\n", no->dados.nota2);
+        printf(" Terceira nota: %.1f\n", no->dados.nota3);
+    }
+}
