@@ -11,5 +11,7 @@ typedef struct elemento *Lista;
 
 Lista* cria_lista();
 
+void libera_lista(Lista *li);
+
 
 #endif

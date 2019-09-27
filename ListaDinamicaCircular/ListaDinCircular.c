@@ -15,3 +15,18 @@ Lista* cria_lista(){
 
     return li;
 }
+
+void libera_lista(Lista *li){
+    if(li != NULL && *li != NULL){ 
+        T_elem *no = *li, *aux;         
+
+        while(*li != no->proximo){
+            aux = no;
+            no = no->proximo;
+            free(aux);
+        }
+
+        free(no);
+        free(li);
+    }
+}
