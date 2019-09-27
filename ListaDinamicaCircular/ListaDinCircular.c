@@ -48,3 +48,15 @@ int tamanho_lista(Lista *li){
 
     return tamanho;
 }
+
+int lista_vazia(Lista *li){
+    if(li == NULL){
+        return -1;
+    }
+
+    if(*li == NULL){
+        return 1; // True
+    }else{
+        return 0; // False
+    }
+}

@@ -15,4 +15,6 @@ void libera_lista(Lista *li);
 
 int tamanho_lista(Lista *li);
 
+int lista_vazia(Lista *li);
+
 #endif
