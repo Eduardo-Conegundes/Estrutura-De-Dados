@@ -13,5 +13,6 @@ Lista* cria_lista();
 
 void libera_lista(Lista *li);
 
+int tamanho_lista(Lista *li);
 
 #endif
