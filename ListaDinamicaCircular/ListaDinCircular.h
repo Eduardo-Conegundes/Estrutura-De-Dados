@@ -7,7 +7,12 @@ typedef struct aluno{
     float nota1, nota2, nota3;
 }T_aluno;
 
-typedef struct elemento *Lista;
+typedef struct elemento{
+    T_aluno dados;
+    T_elem *proximo;
+}T_elem;
+
+typedef T_elem *Lista;
 
 Lista* cria_lista();
 
@@ -20,5 +25,7 @@ int lista_vazia(Lista *li);
 int insere_inicio_lista(Lista *li, T_aluno al);
 
 int insere_final_lista(Lista *li, T_aluno al);
+
+int insere_lista_ordenada(Lista *li, T_aluno al);
 
 #endif

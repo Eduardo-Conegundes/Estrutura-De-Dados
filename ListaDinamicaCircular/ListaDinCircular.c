@@ -1,11 +1,5 @@
 #include "ListaDinCircular.h";
 
-typedef struct elemento{
-    T_aluno dados;
-    struct elemento *proximo;
-}T_elem;
-
-
 Lista* cria_lista(){
     Lista *li = (Lista*)malloc(sizeof(Lista));
 
@@ -106,6 +100,44 @@ int insere_final_lista(Lista *li, T_aluno al){
 
         aux->proximo = no;
         no->proximo = *li;
+    }
+
+    return 1;
+}
+
+int insere_lista_ordenada(Lista *li, T_aluno al){
+    if(li == NULL){
+        return -1;
+    }
+
+    T_elem *no = (T_elem*)malloc(sizeof(T_elem));
+    no->dados = al;
+
+    if(*li == NULL){
+        no->proximo = no;
+        *li = no;
+    }else{
+        if((*li)->dados.matricula > al.matricula){
+            T_elem *aux = *li;
+
+            while(aux->proximo != *li){
+                aux = aux->proximo;
+            }
+
+            aux->proximo = no;
+            no->proximo = *li;
+            *li = no;
+        }else{
+            T_elem *anterior = *li, *atual = (*li)->proximo;
+
+            while(atual != *li && atual->dados.matricula < al.matricula){
+                anterior = atual;
+                atual = atual->proximo;
+            }
+
+            anterior->proximo = no;
+            no->proximo = atual;
+        }
     }
 
     return 1;
