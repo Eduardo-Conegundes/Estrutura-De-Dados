@@ -74,7 +74,7 @@ int insere_inicio_lista(Lista *li, T_aluno al){
         *li = no;
     }else{
         T_elem *aux = *li;
-        
+
         while(aux->proximo != *li){
             aux = aux->proximo;
         }
@@ -82,6 +82,30 @@ int insere_inicio_lista(Lista *li, T_aluno al){
         aux->proximo = no;
         no->proximo = *li;
         *li = no;
+    }
+
+    return 1;
+}
+
+int insere_final_lista(Lista *li, T_aluno al){
+    if(li == NULL){
+        return -1;
+    }
+    T_elem *no = (T_elem*)malloc(sizeof(T_elem));
+    no->dados = al;
+
+    if(*li == NULL){
+        no->proximo = no;
+        *li = no;
+    }else{
+        T_elem *aux = *li;
+
+        while(aux->proximo != *li){
+            aux = aux->proximo;
+        }
+
+        aux->proximo = no;
+        no->proximo = *li;
     }
 
     return 1;

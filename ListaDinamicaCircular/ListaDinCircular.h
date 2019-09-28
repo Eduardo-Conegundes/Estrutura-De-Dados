@@ -19,4 +19,6 @@ int lista_vazia(Lista *li);
 
 int insere_inicio_lista(Lista *li, T_aluno al);
 
+int insere_final_lista(Lista *li, T_aluno al);
+
 #endif
