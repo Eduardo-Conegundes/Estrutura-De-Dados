@@ -17,4 +17,6 @@ int tamanho_lista(Lista *li);
 
 int lista_vazia(Lista *li);
 
+int insere_inicio_lista(Lista *li, T_aluno al);
+
 #endif
