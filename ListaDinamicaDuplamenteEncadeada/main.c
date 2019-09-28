@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "listaDinEncad.c"
+#include "listaDinEncadDupla.c"
 
 int main (void){
     system("cls");

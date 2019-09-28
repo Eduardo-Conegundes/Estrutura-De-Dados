@@ -2,11 +2,6 @@
 #include <stdio.h>
 #include "listaDinEncad.h"
 
-typedef struct elemento{
-    T_aluno dados;
-    struct elemento* prox;
-}T_elem;
-
 void MenuDeOpcoes(int* opcao){
     
     printf("\n\n *-*-*-*-* MENU PRINCIPAL -*-*-*-*-* \n\n");

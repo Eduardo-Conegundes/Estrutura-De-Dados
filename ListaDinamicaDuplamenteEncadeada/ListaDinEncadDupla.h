@@ -7,7 +7,13 @@ typedef struct aluno{
     float nota1, nota2, nota3;
 }T_aluno;
 
-typedef struct elemento* Lista;
+typedef struct elemento {
+    struct elemento *anterior;
+    T_aluno dados;
+    struct elemento *proximo;
+}T_elem;
+
+typedef T_elem *Lista;
 
 void MenuDeOpcoes(int* opcao);
 

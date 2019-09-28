@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct elemento {
-    T_elem *anterior;
-    T_aluno dados;
-    T_elem *proximo;
-}T_elem;
-
 Lista* cria_lista(){
     Lista* li = (Lista*) malloc(sizeof(Lista));
 

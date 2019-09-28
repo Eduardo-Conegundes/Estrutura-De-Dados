@@ -1,5 +1,5 @@
-#ifndef LISTADINENCAD
-#define LISTADINENCAD
+#ifndef LISTA_DIN_ENCAD
+#define LISTA_DIN_ENCAD
 
 typedef struct aluno{
     int matricula;
@@ -7,7 +7,12 @@ typedef struct aluno{
     float nota1, nota2, nota3;
 }T_aluno;
 
-typedef struct elemento* Lista;
+typedef struct elemento{
+    T_aluno dados;
+    struct elemento *prox;
+}T_elem;
+
+typedef T_elem *Lista;
 
 void MenuDeOpcoes(int* opcao);
 

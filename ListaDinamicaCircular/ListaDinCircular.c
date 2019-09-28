@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "ListaDinCircular.h";
 
 Lista* cria_lista(){
@@ -8,6 +10,74 @@ Lista* cria_lista(){
     }
 
     return li;
+}
+
+void MenuDeOpcoes(int* opcao){
+    printf("\n\n *-*-*-*-* MENU PRINCIPAL -*-*-*-*-* \n\n");
+
+    printf(" Escolha uma opcao: \n\n");
+    printf(" 1- Cadastrar alunos\n 2- Mostra alunos cadastrados\n 3- Remover aluno");
+    printf("\n 4- Buscar por aluno\n 5- Tamanho da lista\n 6- A lista esta vazia?\n 7- Sair\n\n");
+
+    printf(" Opcao: ");
+    scanf("%d", opcao);
+}
+
+void cadastar_alunos(Lista* li){
+    system("cls");
+    T_aluno aluno;
+    char opcao;
+
+    do{
+        printf("\n Matricula do aluno: ");
+        scanf("%i", &aluno.matricula);
+
+        printf("\n Nome do aluno: ");
+        scanf("%s", aluno.nome);
+
+        printf("\n Primeira nota do aluno: ");
+        scanf("%f", &aluno.nota1);
+
+        printf("\n Segunda nota do aluno: ");
+        scanf("%f", &aluno.nota2);
+
+        printf("\n Segunda nota do aluno: ");
+        scanf("%f", &aluno.nota3);
+        
+        //insere_lista_inicio(li, aluno);
+        //insere_lista_final(li, aluno);
+        insere_lista_ordenada(li, aluno);
+
+        system("cls");
+        printf("\n\n Deseja cadastar outro aluno? [s/n]: ");
+        scanf(" %c", &opcao);
+
+    }while(opcao != 'n');
+
+}
+
+// Precisa de um ajuste!!!!
+void mostrar_todos_alunos(Lista* li){
+    system("cls");
+
+    if(li == NULL){
+        printf("\n Lista nao existe!!\n\n");
+    }else if( (*li) == NULL){
+        printf("\n Lista vazia!\n\n");
+    }else{
+        T_elem* no = (*li);
+
+        while(no->proximo != *li){
+            printf("\n Matricula: %i\n", no->dados.matricula);
+            printf(" Nome: %s\n", no->dados.nome);
+            printf(" Primeira nota: %.1f\n", no->dados.nota1);
+            printf(" Segunda nota: %.1f\n", no->dados.nota2);
+            printf(" Terceira nota: %.1f\n", no->dados.nota3);
+            printf("\n -------------------------------------\n");
+
+            no = no->proximo;
+        }
+    }
 }
 
 void libera_lista(Lista *li){
