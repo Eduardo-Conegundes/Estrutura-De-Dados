@@ -113,9 +113,7 @@ int tamanho_lista(Lista *li){
 int lista_vazia(Lista *li){
     if(li == NULL){
         return -1;
-    }
-
-    if(*li == NULL){
+    }else if(*li == NULL){
         return 1; // True
     }else{
         return 0; // False
@@ -213,9 +211,7 @@ int insere_lista_ordenada(Lista *li, T_aluno al){
 int remove_lista_inicio(Lista *li){
     if(li == NULL){
         return -1;
-    }
-
-    if(*li == NULL){
+    }else if(*li == NULL){
         return 0;
     }else{
 
@@ -236,6 +232,29 @@ int remove_lista_inicio(Lista *li){
 
         free(no);   
 
+        return 1;
+    }
+}
+
+int remove_lista_final(Lista *li){
+    if(li == NULL){
+        return -1;
+    }else if(*li == NULL){
+        return 0;
+    }else{
+        if(*li = (*li)->proximo){
+            free(*li);
+            *li = NULL;
+        }
+
+        T_elem *anterior = NULL, *no = *li;
+
+        while(no->proximo != *li){
+            anterior = no;
+            no = no->proximo;
+        }
+        anterior->proximo = *li;
+        free(no);
         return 1;
     }
 }

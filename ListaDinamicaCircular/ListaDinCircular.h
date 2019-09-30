@@ -36,4 +36,6 @@ int insere_lista_ordenada(Lista *li, T_aluno al);
 
 int remove_lista_inicio(Lista *li);
 
+int remove_lista_final(Lista *li);
+
 #endif
