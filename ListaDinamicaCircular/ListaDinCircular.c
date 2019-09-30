@@ -56,7 +56,6 @@ void cadastar_alunos(Lista* li){
 
 }
 
-// Precisa de um ajuste!!!!
 void mostrar_todos_alunos(Lista* li){
     system("cls");
 
@@ -66,17 +65,15 @@ void mostrar_todos_alunos(Lista* li){
         printf("\n Lista vazia!\n\n");
     }else{
         T_elem* no = (*li);
-
-        while(no->proximo != *li){
+        do{
             printf("\n Matricula: %i\n", no->dados.matricula);
             printf(" Nome: %s\n", no->dados.nome);
             printf(" Primeira nota: %.1f\n", no->dados.nota1);
             printf(" Segunda nota: %.1f\n", no->dados.nota2);
             printf(" Terceira nota: %.1f\n", no->dados.nota3);
             printf("\n -------------------------------------\n");
-
             no = no->proximo;
-        }
+        }while(no != *li);
     }
 }
 
