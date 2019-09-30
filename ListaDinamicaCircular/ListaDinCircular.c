@@ -212,3 +212,33 @@ int insere_lista_ordenada(Lista *li, T_aluno al){
 
     return 1;
 }
+
+int remove_lista_inicio(Lista *li){
+    if(li == NULL){
+        return -1;
+    }
+
+    if(*li == NULL){
+        return 0;
+    }else{
+
+        if(*li == (*li)->proximo){
+            free(*li);
+            *li = NULL;
+            return 1;
+        }
+
+        T_elem *aux = *li, *no = *li;
+
+        while(aux->proximo != *li){
+            aux = aux->proximo;
+        }
+
+        *li = (*li)->proximo;
+        aux->proximo = *li;
+
+        free(no);   
+
+        return 1;
+    }
+}
