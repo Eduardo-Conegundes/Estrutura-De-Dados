@@ -258,3 +258,43 @@ int remove_lista_final(Lista *li){
         return 1;
     }
 }
+
+int remove_lista(Lista *li, T_aluno al){
+    if(li == NULL){
+        return -1;
+    }else if(*li == NULL){
+        return 0;
+    }else{
+        if((*li)->dados.matricula == al.matricula){
+            if(*li == (*li)->proximo){
+                free(*li);
+                *li = NULL;
+                return 1;
+            }else{
+                T_elem *aux = *li, *no = *li;
+                while(aux->proximo != *li){
+                    aux = aux->proximo;
+                }
+                *li = (*li)->proximo;
+                aux->proximo = *li;
+                free(no);
+                return 1;
+            }
+        }
+
+        T_elem *anterior = *li, *no = (*li)->proximo;
+
+        while(no != *li && no->dados.matricula != al.matricula){
+            anterior = no;
+            no = no->proximo;
+        }
+
+        if(no == *li){
+            return 0;
+        }else{
+            anterior->proximo = no->proximo;
+            free(no);
+            return 1;
+        }
+    }
+}
