@@ -10,10 +10,6 @@ T_PilhaSimples* criaPilha(void){
         // Se foi alocado com sucesso, o ponteiro pilha aponta pra NULL, ou seja, a pilha
         // foi criada mas está vazia.
         pilha = NULL;  
-    }else{
-        printf("\n Erro ao criar lista\n");
-        // Sai da função sem retornar nada.
-        return;
     }
 
     // Retorna o ponteiro do tipo "T_PilhaSimples".

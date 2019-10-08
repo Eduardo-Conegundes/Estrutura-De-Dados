@@ -9,7 +9,7 @@ typedef struct no{
 
 
 //Função que cria a lista (fazendo com que a cabeça da lista aponte para null)
-//Retorna um ponteiro para ponteiro
+//Retorna um ponteiro do tipo "T_ListaDupla".
 T_ListaDupla* criaLista(void);
 
 //Funcção que mostra o menu de opcoes de ações na lista
@@ -35,7 +35,8 @@ void listaValoresOrdemCrescente(T_ListaDupla **lista);
 //Lista todos os valores da lista em orde decrescente
 void listaValoresOrdemDecrescente(T_ListaDupla **lista);
 
-//Libera todos os "no" da lista, assim destruindo a lista
+//Libera todos os "no"s da lista, assim destruindo a lista
+// Retorna a quantidade de "no"s removido/destruidos/liberados.
 int destruirLista(T_ListaDupla **lista);
 
 #endif

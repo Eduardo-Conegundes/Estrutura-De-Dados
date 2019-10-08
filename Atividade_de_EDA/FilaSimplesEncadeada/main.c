@@ -1,7 +1,11 @@
 #include "FilaSimplesEncadeada.c"
 
 int main(void){
+    // Cria um ponteiro do tipo "T_NoDescritor" e chama a função "criaFila" q retorna um ponteiro
+    // que aponta pra NULL assim criando uma fila inicialmente vazia.
     T_NoDescritor *Fila =  criaFila();
+    // Variavel "opcoes" para guardar o valor escolhido do menu de opções.
+    // Variavel "valor" para guardar o valor que será guardado na fila.
     int opcoes, valor;
 
     do{

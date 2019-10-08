@@ -10,11 +10,8 @@ T_ListaDupla* criaLista(void){
         // Se foi alocado com sucesso, o ponteiro lista aponta pra NULL, ou seja, a lista
         // foi criada mas está vazia.
         lista = NULL;
-    }else{
-        printf("\n Erro ao criar lista\n");
-        // Sai da função sem retornar nada.
-        return;
     }
+    
     // Retorna o ponteiro do tipo "T_ListaDupla".
     return lista;
 }
