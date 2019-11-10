@@ -1,7 +1,7 @@
-#include "arvoreBinariaDinamica.c"
+#include "ArvoreBinariaDinamica.c"
 
 int main(void){
-    BinaryTree *TreeRoot;
+    BinaryTree *TreeRoot = createBinaryTree();
     
 
 

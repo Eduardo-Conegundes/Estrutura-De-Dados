@@ -2,9 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
-    struct Node *Left;
-    int Value;
-    struct Node *Right;
-}*BinaryTree;
+BinaryTree* createBinaryTree(){
+    BinaryTree *Root = (BinaryTree *)malloc(sizeof(BinaryTree));
 
+    if(Root != NULL){
+        *Root = NULL;
+    }
+
+    return Root;
+}
