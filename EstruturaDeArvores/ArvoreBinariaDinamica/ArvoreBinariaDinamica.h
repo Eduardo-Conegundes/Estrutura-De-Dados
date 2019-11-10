@@ -13,4 +13,10 @@ void freeTree(BinaryTree *Root);
 
 void freeNodes(BinaryTree Node);
 
+int isEmpty(BinaryTree *Root);
+
+int treeHeight(BinaryTree *Root);
+
+int totalNodes(BinaryTree *Root);
+
 #endif
