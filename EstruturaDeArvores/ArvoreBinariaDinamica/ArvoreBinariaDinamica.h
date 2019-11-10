@@ -9,5 +9,8 @@ typedef struct Node {
 
 BinaryTree* createBinaryTree();
 
+void freeTree(BinaryTree *Root);
+
+void freeNodes(BinaryTree Node);
 
 #endif
