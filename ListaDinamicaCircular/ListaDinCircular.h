@@ -42,4 +42,6 @@ int remove_lista_final(Lista *li);
 
 int remove_lista(Lista *li, int matricula);
 
+int busca_lista_matricula(Lista *li, int matricula);
+
 #endif

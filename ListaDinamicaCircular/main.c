@@ -13,10 +13,12 @@ int main (void){
 
         switch(opcao){
             case 1:
+                system("cls");
                 cadastar_alunos(li);
             break;
 
             case 2:
+                system("cls");
                 mostrar_todos_alunos(li);
             break;
                 
@@ -41,7 +43,7 @@ int main (void){
                 printf("\n Informe a matricula do aluno: ");
                 scanf("%d", &matricula);
 
-                x = busca_lista_matricula(li, matricula);;
+                x = busca_lista_matricula(li, matricula);
 
                 if(x == -1){
                     printf("\n\n Lista inexistente!\n\n");
@@ -52,6 +54,7 @@ int main (void){
             break;
                 
             case 5:
+                system("cls");
                 if(tamanho_lista(li) == -1){
                     printf("\n Lista inexistente!\n\n");
                 }else{
@@ -60,6 +63,7 @@ int main (void){
             break;
 
             case 6:
+                system("cls");
                 x = lista_vazia(li);
 
                 if(x == -1){
@@ -72,10 +76,12 @@ int main (void){
 
             break;
             case 7:
+                system("cls");
                 printf("\n Saindo...\n\n");
             break;
 
             default:
+                system("cls");
                 system("cls");
                 printf("\n Opcao invalida!\n\n");
             break;

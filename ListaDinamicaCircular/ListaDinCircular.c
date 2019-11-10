@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "ListaDinCircular.h";
+#include "ListaDinCircular.h"
 
 Lista* cria_lista(){
     Lista *li = (Lista*)malloc(sizeof(Lista));
 
     if(li != NULL){
-        li = NULL;
+        *li = NULL;
     }
 
     return li;
@@ -41,13 +41,12 @@ void cadastar_alunos(Lista* li){
         printf("\n Segunda nota do aluno: ");
         scanf("%f", &aluno.nota2);
 
-        printf("\n Segunda nota do aluno: ");
+        printf("\n Terceira nota do aluno: ");
         scanf("%f", &aluno.nota3);
         
         //insere_lista_inicio(li, aluno);
         //insere_lista_final(li, aluno);
         insere_lista_ordenada(li, aluno);
-
         system("cls");
         printf("\n\n Deseja cadastar outro aluno? [s/n]: ");
         scanf(" %c", &opcao);
@@ -202,6 +201,7 @@ int insere_lista_ordenada(Lista *li, T_aluno al){
 
             anterior->proximo = no;
             no->proximo = atual;
+            *li = no;
         }
     }
 
@@ -296,5 +296,31 @@ int remove_lista(Lista *li, int matricula){
             free(no);
             return 1;
         }
+    }
+}
+
+int busca_lista_matricula(Lista *li, int matricula){
+    if(li == NULL){
+        return -1;
+    }else if(matricula < 0 || (*li) == NULL){
+        return 0;
+    }else{
+        T_elem *no = *li;
+        while( no != (*li) && no->dados.matricula != matricula){
+            no = no->proximo;
+        }
+        
+        if(no->dados.matricula != matricula){
+            return 0;
+        }else{
+            printf("\n Matricula: %i\n", no->dados.matricula);
+            printf(" Nome: %s\n", no->dados.nome);
+            printf(" Primeira nota: %.1f\n", no->dados.nota1);
+            printf(" Segunda nota: %.1f\n", no->dados.nota2);
+            printf(" Terceira nota: %.1f\n", no->dados.nota3);
+
+            return 1;
+        }
+
     }
 }
