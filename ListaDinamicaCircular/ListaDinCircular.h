@@ -40,6 +40,6 @@ int remove_lista_final(Lista *li);
 
 int remove_lista_final(Lista *li);
 
-int remove_lista(Lista *li, T_aluno al);
+int remove_lista(Lista *li, int matricula);
 
 #endif
