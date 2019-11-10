@@ -1,0 +1,6 @@
+#ifndef ARVORE_BINARIA_DINAMICA
+#define ARVORE_BINARIA_DINAMICA
+
+
+
+#endif
