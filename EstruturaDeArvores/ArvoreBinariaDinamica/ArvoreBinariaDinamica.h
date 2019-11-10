@@ -19,4 +19,10 @@ int treeHeight(BinaryTree *Root);
 
 int totalNodes(BinaryTree *Root);
 
+void Inorder(BinaryTree *Root);
+
+void Preorder(BinaryTree *Root);
+
+void Postorder(BinaryTree *Root);
+
 #endif

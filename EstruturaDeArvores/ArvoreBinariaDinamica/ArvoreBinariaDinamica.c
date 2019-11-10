@@ -65,3 +65,30 @@ int totalNodes(BinaryTree *Root){
         return (leftHeight + rightHeight + 1);
     }
 }
+
+void inorder(BinaryTree *Root){
+    if(Root != NULL && (*Root) != NULL){
+        preorder(&((*Root)->Left));
+        printf("\n Value = %d\n", (*Root)->Value);
+        preorder(&((*Root)->Right));
+    }
+};
+
+void preorder(BinaryTree *Root){
+    if(Root != NULL && (*Root) != NULL){
+        printf("\n Value = %d\n", (*Root)->Value);
+        preorder(&((*Root)->Left));
+        preorder(&((*Root)->Right));
+    }
+};
+ 
+void postorder(BinaryTree *Root){
+    if(Root != NULL && (*Root) != NULL){
+        preorder(&((*Root)->Left));
+        preorder(&((*Root)->Right));
+        printf("\n Value = %d\n", (*Root)->Value);
+    }
+};
+
+
+
