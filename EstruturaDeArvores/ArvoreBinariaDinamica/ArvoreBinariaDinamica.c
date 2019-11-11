@@ -151,29 +151,32 @@ void removeNode(BinaryTree *Root, int Value){
 BinaryTree removeSpecificNode(BinaryTree Node){
     BinaryTree node1, node2;
 
-    // If there's no child or only one child
     if(Node->Left == NULL){
-        node2 = Node->Right;
+        node1 = Node->Right;
+    }else if(Node->Right == NULL){
+        node1 = Node->Left;
+    }else{
+        node1 = Node;
+        node2 = Node->Left;
+
+        while(node2->Right != NULL){
+            node1 = node2;
+            node2 = node2->Right;
+        }
+
+        if(node1 != Node){
+            node1->Right = node2->Left;
+            node2->Left = Node->Left;
+        }
+
+        node2->Right = Node->Right;
+        
         free(Node);
         return node2;
     }
 
-    node1 = Node;
-    node2 = Node->Left;
-
-    while(node2->Right != NULL){
-        node1 = node2;
-        node2 = node2->Right;
-    }
-
-    if(node1 != Node){
-        node1->Right = node2->Left;
-        node2->Left = Node->Left;
-    }
-
-    node2->Right = Node->Right;
     free(Node);
-    return node2;
+    return node1;
 };
 
 void lookForValue(BinaryTree *Root, int Value){
