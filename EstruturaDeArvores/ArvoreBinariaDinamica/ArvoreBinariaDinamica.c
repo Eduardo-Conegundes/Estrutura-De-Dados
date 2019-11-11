@@ -118,3 +118,60 @@ void insertInTree(BinaryTree *Root, int Value){
     }
 }
 
+void removeNode(BinaryTree *Root, int Value){
+    if(Root != NULL){
+        BinaryTree previousNode = NULL;
+        BinaryTree currentNode = *Root;
+
+        while(currentNode != NULL){
+            if(currentNode->Value == Value){
+                if(currentNode == *Root){
+                    *Root = removeSpecificNode(currentNode);
+                }else{
+                    if(previousNode->Right == currentNode){
+                        previousNode->Right = removeSpecificNode(currentNode);
+                    }else{
+                        previousNode->Left = removeSpecificNode(currentNode);
+                    }
+                }
+                printf("\n Node deleted successfully!\n");
+            }
+
+            previousNode = currentNode;
+
+            if(Value > currentNode->Value){
+                currentNode = currentNode->Right;
+            }else{
+                currentNode = currentNode->Left;
+            }
+        }
+    }
+};
+
+BinaryTree removeSpecificNode(BinaryTree Node){
+    BinaryTree node1, node2;
+
+    // If there's no child or only one child
+    if(Node->Left == NULL){
+        node2 = Node->Right;
+        free(Node);
+        return node2;
+    }
+
+    node1 = Node;
+    node2 = Node->Left;
+
+    while(node2->Right != NULL){
+        node1 = node2;
+        node2 = node2->Right;
+    }
+
+    if(node1 != Node){
+        node1->Right = node2->Left;
+        node2->Left = Node->Left;
+    }
+
+    node2->Right = Node->Right;
+    free(Node);
+    return node2;
+};
