@@ -68,11 +68,11 @@ int totalNodes(BinaryTree *Root){
 
 void inorder(BinaryTree *Root){
     if(Root != NULL && (*Root) != NULL){
-        preorder(&((*Root)->Left));
+        inorder(&((*Root)->Left));
         printf("\n Value = %d\n", (*Root)->Value);
-        preorder(&((*Root)->Right));
+        inorder(&((*Root)->Right));
     }
-};
+}
 
 void preorder(BinaryTree *Root){
     if(Root != NULL && (*Root) != NULL){
@@ -80,15 +80,15 @@ void preorder(BinaryTree *Root){
         preorder(&((*Root)->Left));
         preorder(&((*Root)->Right));
     }
-};
+}
  
 void postorder(BinaryTree *Root){
     if(Root != NULL && (*Root) != NULL){
-        preorder(&((*Root)->Left));
-        preorder(&((*Root)->Right));
+        postorder(&((*Root)->Left));
+        postorder(&((*Root)->Right));
         printf("\n Value = %d\n", (*Root)->Value);
     }
-};
+}
 
 void insertInTree(BinaryTree *Root, int Value){
     if(Root != NULL){
@@ -146,7 +146,7 @@ void removeNode(BinaryTree *Root, int Value){
             }
         }
     }
-};
+}
 
 BinaryTree removeSpecificNode(BinaryTree Node){
     BinaryTree node1, node2;
@@ -175,3 +175,19 @@ BinaryTree removeSpecificNode(BinaryTree Node){
     free(Node);
     return node2;
 };
+
+void lookForValue(BinaryTree *Root, int Value){
+    if(Root != NULL){
+        if((*Root == NULL)){
+            printf("\n Value not found!\n");
+        }else{
+            if((*Root)->Value > Value){
+                lookForValue(&((*Root)->Left), Value);
+            }else if((*Root)->Value < Value){
+                lookForValue(&((*Root)->Right), Value);
+            }else{
+                printf("\n Value found!\n");
+            }
+        }
+    }
+}

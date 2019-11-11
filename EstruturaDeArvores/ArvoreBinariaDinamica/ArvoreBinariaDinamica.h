@@ -27,8 +27,10 @@ void Postorder(BinaryTree *Root);
 
 void insertInTree(BinaryTree *Root, int Value);
 
-void removeNode(BinaryTree *Root, int value);
+void removeNode(BinaryTree *Root, int Value);
 
 BinaryTree removeSpecificNode(BinaryTree Node);
+
+void lookForValue(BinaryTree *Root, int Value);
 
 #endif
