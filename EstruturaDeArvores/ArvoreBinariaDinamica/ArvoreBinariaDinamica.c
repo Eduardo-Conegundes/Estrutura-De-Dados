@@ -90,5 +90,31 @@ void postorder(BinaryTree *Root){
     }
 };
 
+void insertInTree(BinaryTree *Root, int Value){
+    if(Root != NULL){
+        /* 
+            "BinaryTree" is alread a pointer, that's why it's not required a *,
+            otherwise it'd be a pointer to pointer (Double pointer).
+        */
+        BinaryTree newNode = (BinaryTree) malloc(sizeof(BinaryTree));
 
+        newNode->Value = Value;
+        newNode->Left = newNode->Right = NULL;
+
+        if((*Root) == NULL){
+            *Root = newNode;
+        }else{
+            BinaryTree *auxiliaryNode = *Root;
+
+            if((*auxiliaryNode)->Value > Value){ 
+                insertInTree(&((*auxiliaryNode)->Left), Value);    
+            }else if((*auxiliaryNode)->Value < Value){
+                insertInTree(&((*auxiliaryNode)->Right), Value);
+            }else{
+                printf("\n This number already exists in the tree!\n");
+                free(newNode);
+            }
+        }
+    }
+}
 

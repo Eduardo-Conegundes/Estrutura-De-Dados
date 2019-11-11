@@ -25,4 +25,6 @@ void Preorder(BinaryTree *Root);
 
 void Postorder(BinaryTree *Root);
 
+void insertInTree(BinaryTree *Root, int Value);
+
 #endif
