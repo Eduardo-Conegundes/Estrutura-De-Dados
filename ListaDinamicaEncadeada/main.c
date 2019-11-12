@@ -72,6 +72,7 @@ int main (void){
 
             break;
             case 7:
+                libera_lista(li);
                 printf("\n Saindo...\n\n");
             break;
 

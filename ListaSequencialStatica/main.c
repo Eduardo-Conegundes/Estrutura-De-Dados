@@ -76,6 +76,7 @@ int main(void){
 
             case 7:
                 system("cls");
+                libera_lista(li);
                 printf("\n Finalizado!\n\n");
             break;
 

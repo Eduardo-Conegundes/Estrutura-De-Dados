@@ -75,13 +75,14 @@ int main (void){
                 }
 
             break;
+
             case 7:
                 system("cls");
+                libera_lista(li);
                 printf("\n Saindo...\n\n");
             break;
-
+            
             default:
-                system("cls");
                 system("cls");
                 printf("\n Opcao invalida!\n\n");
             break;
