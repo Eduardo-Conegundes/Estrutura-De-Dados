@@ -90,95 +90,6 @@ void postorder(AVL_BinaryTree *Root){
     }
 }
 
-void insertInTree(AVL_BinaryTree *Root, int Value){
-    if(Root != NULL){
-        /* 
-            "AVL_BinaryTree" is alread a pointer, that's why it's not required a *,
-            otherwise it'd be a pointer to pointer (Double pointer).
-        */
-        AVL_BinaryTree newNode = (AVL_BinaryTree) malloc(sizeof(AVL_BinaryTree));
-
-        newNode->Value = Value;
-        newNode->Left = newNode->Right = NULL;
-
-        if((*Root) == NULL){
-            *Root = newNode;
-        }else{
-            AVL_BinaryTree *auxiliaryNode = *Root;
-
-            if((*auxiliaryNode)->Value > Value){ 
-                insertInTree(&((*auxiliaryNode)->Left), Value);    
-            }else if((*auxiliaryNode)->Value < Value){
-                insertInTree(&((*auxiliaryNode)->Right), Value);
-            }else{
-                printf("\n This number already exists in the tree!\n");
-                free(newNode);
-            }
-        }
-    }
-}
-
-void removeNode(AVL_BinaryTree *Root, int Value){
-    if(Root != NULL){
-        AVL_BinaryTree previousNode = NULL;
-        AVL_BinaryTree currentNode = *Root;
-
-        while(currentNode != NULL){
-            if(currentNode->Value == Value){
-                if(currentNode == *Root){
-                    *Root = removeSpecificNode(currentNode);
-                }else{
-                    if(previousNode->Right == currentNode){
-                        previousNode->Right = removeSpecificNode(currentNode);
-                    }else{
-                        previousNode->Left = removeSpecificNode(currentNode);
-                    }
-                }
-                printf("\n Node deleted successfully!\n");
-            }
-
-            previousNode = currentNode;
-
-            if(Value > currentNode->Value){
-                currentNode = currentNode->Right;
-            }else{
-                currentNode = currentNode->Left;
-            }
-        }
-    }
-}
-
-AVL_BinaryTree removeSpecificNode(AVL_BinaryTree Node){
-    AVL_BinaryTree node1, node2;
-
-    if(Node->Left == NULL){
-        node1 = Node->Right;
-    }else if(Node->Right == NULL){
-        node1 = Node->Left;
-    }else{
-        node1 = Node;
-        node2 = Node->Left;
-
-        while(node2->Right != NULL){
-            node1 = node2;
-            node2 = node2->Right;
-        }
-
-        if(node1 != Node){
-            node1->Right = node2->Left;
-            node2->Left = Node->Left;
-        }
-
-        node2->Right = Node->Right;
-        
-        free(Node);
-        return node2;
-    }
-
-    free(Node);
-    return node1;
-};
-
 void lookForValue(AVL_BinaryTree *Root, int Value){
     if(Root != NULL){
         if((*Root == NULL)){
@@ -290,4 +201,63 @@ void insertInAVLTree(AVL_BinaryTree *Root, int Value){
 
         currentNode->nodeHeight = greatestBetween(nodeHeight(currentNode->Left), nodeHeight(currentNode->Right)) + 1;
     }
+}
+
+void removeFromAVLTree(AVL_BinaryTree *Root, int Value){
+    if((*Root) != NULL){
+        if(Value < (*Root)->Value){
+            removeFromAVLTree(&(*Root)->Left, Value);
+            if(balancingFactor(*Root) >= 2){
+                if(nodeHeight((*Root)->Right->Left) <= nodeHeight((*Root)->Right->Left)){
+                    RRRotation(Root);
+                }else{
+                    RLRotation(Root);
+                }
+            }
+        }else if(Value > (*Root)->Value){
+            removeFromAVLTree(&(*Root)->Right, Value);
+            if(balancingFactor(*Root) >= 2){
+                if(nodeHeight((*Root)->Left->Right) <= nodeHeight((*Root)->Left->Left)){
+                    LLRotation(Root);   
+                }else{
+                    LRRotation(Root);
+                }
+            }
+        }else{
+            if((*Root)->Left == NULL || (*Root)->Right == NULL){
+                AVL_BinaryTree oldNode = *Root;
+                if((*Root)->Left != NULL){
+                    *Root = (*Root)->Left;
+                }else{
+                    *Root = (*Root)->Right;
+                }
+                free(oldNode);
+            }else{
+                AVL_BinaryTree auxiliaryNode = lookForLower((*Root)->Right);
+                (*Root)->Value = auxiliaryNode->Value;
+                removeFromAVLTree(&(*Root)->Right, (*Root)->Value);
+                if(balancingFactor(*Root) >= 2){
+                    if(nodeHeight((*Root)->Left->Right) <= nodeHeight((*Root)->Left->Left)){
+                        LLRotation(Root);
+                    }else{
+                        LRRotation(Root);
+                    }
+                }
+            }
+            printf("\n Successfully removed node!\n");
+        }
+        (*Root)->nodeHeight = greatestBetween(nodeHeight((*Root)->Left),nodeHeight((*Root)->Right)) + 1;
+    }
+}
+
+AVL_BinaryTree lookForLower(AVL_BinaryTree Node){
+    AVL_BinaryTree node1 = Node;
+    AVL_BinaryTree node2 = Node->Left;
+
+    while(node2 != NULL){
+        node1 = node2;
+        node2 = node2->Left;
+    }
+
+    return node1;
 }

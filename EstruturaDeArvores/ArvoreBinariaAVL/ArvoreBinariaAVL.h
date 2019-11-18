@@ -32,12 +32,6 @@ void Postorder(AVL_BinaryTree *Root);
 
 int greatestBetween(int Value1, int Value2);
 
-void insertInTree(AVL_BinaryTree *Root, int Value);
-
-void removeNode(AVL_BinaryTree *Root, int Value);
-
-AVL_BinaryTree removeSpecificNode(AVL_BinaryTree Node);
-
 void lookForValue(AVL_BinaryTree *Root, int Value);
 
 void LLRotation(AVL_BinaryTree *Root);
@@ -49,5 +43,9 @@ void LRRotation(AVL_BinaryTree *Root);
 void RLRotation(AVL_BinaryTree *Root);
 
 void insertInAVLTree(AVL_BinaryTree *Root, int Value);
+
+void removeFromAVLTree(AVL_BinaryTree *Root, int Value);
+
+AVL_BinaryTree lookForLower(AVL_BinaryTree Node);
 
 #endif
