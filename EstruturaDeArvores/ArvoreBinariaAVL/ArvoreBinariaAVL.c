@@ -252,3 +252,42 @@ void RLRotation(AVL_BinaryTree *Root){
     LLRotation(&(*Root)->Right);
     RRRotation(Root);
 }
+
+void insertInAVLTree(AVL_BinaryTree *Root, int Value){
+
+    if((*Root) == NULL){
+        AVL_BinaryTree newNode = (AVL_BinaryTree)malloc(sizeof(AVL_BinaryTree));
+        newNode->Value = Value;
+        newNode->nodeHeight = 0;
+        newNode->Left = NULL;
+        newNode->Right = NULL;
+        *Root = newNode;
+        printf("\n Successfully inserted value!\n");
+    }else{
+        AVL_BinaryTree currentNode = *Root;
+
+        if(Value < currentNode->Value){
+            insertInAVLTree(&currentNode->Left, Value);
+            if(balancingFactor(currentNode) >= 2){
+                if(Value < (*Root)->Left->Value){
+                    LLRotation(Root);
+                }else{
+                    LRRotation(Root);
+                }
+            }
+        }else if(Value > currentNode->Value){
+            insertInAVLTree(&currentNode->Left, Value);
+            if(balancingFactor(currentNode) >= 2){
+                if(Value > (*Root)->Right->Value){
+                    RRRotation(Root);
+                }else{
+                    RLRotation(Root);
+                }
+            }
+        }else{
+            printf("\n Duplicate value!\n");
+        }
+
+        currentNode->nodeHeight = greatestBetween(nodeHeight(currentNode->Left), nodeHeight(currentNode->Right)) + 1;
+    }
+}

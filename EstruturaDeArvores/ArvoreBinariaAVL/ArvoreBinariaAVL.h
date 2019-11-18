@@ -48,4 +48,6 @@ void LRRotation(AVL_BinaryTree *Root);
 
 void RLRotation(AVL_BinaryTree *Root);
 
+void insertInAVLTree(AVL_BinaryTree *Root, int Value);
+
 #endif
