@@ -40,4 +40,12 @@ AVL_BinaryTree removeSpecificNode(AVL_BinaryTree Node);
 
 void lookForValue(AVL_BinaryTree *Root, int Value);
 
+void LLRotation(AVL_BinaryTree *Root);
+
+void RRRotation(AVL_BinaryTree *Root);
+
+void LRRotation(AVL_BinaryTree *Root);
+
+void RLRotation(AVL_BinaryTree *Root);
+
 #endif

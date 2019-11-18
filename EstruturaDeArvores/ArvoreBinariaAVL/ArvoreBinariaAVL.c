@@ -214,3 +214,41 @@ int greatestBetween(int Value1, int Value2){
         return Value2;
     }
 }   
+
+void LLRotation(AVL_BinaryTree *Root){
+    AVL_BinaryTree *Node;
+
+    Node = (*Root)->Left;   
+    (*Root)->Left = (*Node)->Right;
+    (*Node)->Right = (*Root);
+
+    (*Root)->nodeHeight = greatestBetween(nodeHeight((*Root)->Left), nodeHeight((*Root)->Right)) + 1;
+
+    (*Node)->nodeHeight = greatestBetween(nodeHeight((*Node)->Left), (*Root)->nodeHeight) + 1;
+
+    (*Root) = Node;
+}
+
+void RRRotation(AVL_BinaryTree *Root){
+    AVL_BinaryTree *Node;
+
+    Node = (*Root)->Right;   
+    (*Root)->Right = (*Node)->Left;
+    (*Node)->Left = (*Root);
+
+    (*Root)->nodeHeight = greatestBetween(nodeHeight((*Root)->Left), nodeHeight((*Root)->Right)) + 1;
+
+    (*Node)->nodeHeight = greatestBetween(nodeHeight((*Node)->Left), (*Root)->nodeHeight) + 1;
+
+    (*Root) = Node;
+}
+
+void LRRotation(AVL_BinaryTree *Root){
+    RRRotation(&(*Root)->Left);
+    LLRotation(Root);
+}
+
+void RLRotation(AVL_BinaryTree *Root){
+    LLRotation(&(*Root)->Right);
+    RRRotation(Root);
+}
