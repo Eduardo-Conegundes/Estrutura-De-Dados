@@ -23,6 +23,9 @@ void QuickSort(int array[], int left, int right, int *numberOfInteractions){
                 array[i] = array[x];
                 array[x] = auxiliary;
             }
+
+            // Variavel (ponteiro) que conta o número de interações
+            (*numberOfInteractions)++;
         }
 
         // Coloca o valor do pivo no seu devido lugar
@@ -34,9 +37,6 @@ void QuickSort(int array[], int left, int right, int *numberOfInteractions){
         QuickSort(array, left, x-1, numberOfInteractions);
         // Chama a funçao QuickSort recursivamente, passando o sub-vetor do lado direito do pivo
         QuickSort(array, x+1, right, numberOfInteractions);
-
-        // Variavel (ponteiro) que conta o número de interações
-        (*numberOfInteractions)++;
     }
 
 }
